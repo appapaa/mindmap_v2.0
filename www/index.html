@@ -1,0 +1,89 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="viewport" 
+	content="width=device-width, initial-scale=1.0, user-scalable=no">
+	<meta name="mobile-web-app-capable" content="yes">
+	<meta charset="utf-8" />
+	<!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<title></title>
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+	<link rel="stylesheet" href="css/style.css" type="text/css" media="screen, projection" >
+	<!--[if lte IE 6]><link rel="stylesheet" href="style_ie.css" type="text/css" media="screen, projection" /><![endif]-->
+	<script src="js/input.js"></script>
+	<script src="js/vote.js"></script>
+  </head>
+  <body  onload="canvasSpaceGame()">
+  <div id = 'loading'> <div class = 'loading1'></div></div>
+ 	<div id = "money">РЕКЛАМА </div>
+  		  <p><input id = "upload" type="file" onchange = "upload_img(this)" name="myfile"></p>
+    <canvas style = "padding:0;margin-bottom: -4px;border:none;" id="myCanvas" width="100" height="100">
+    </canvas>
+	<div id="dummy">a</div>
+	<div id = "head">
+		<p><input type="image" id = 'vis1' onclick = 'chld_balls();' src="images/vetka.png" style="width:40px;float:right;padding:5px;"></p>
+		<p><input type="image" id = 'vis2' onclick = 'chld_balls();' src="images/vetka_cl.png" style="width:40px;float:right; display:none;padding:5px;"></p>
+		<p><input type="image" id = 'del_b2' onclick = 'rev_del_ball();this.style.display = "none";' src="images/del2.png" style="width:40px;float:right;padding:5px;margin: -50px 0px 0px -50px;position: absolute;display:none;"></p>
+		<p><input type="image" id = 'del_b'  src="images/del.png" style="width:40px;float:right;padding:5px;"></p>
+		<p><input type="image" onclick = 'temp = (temp + 1)%2;draw();' src="images/time.png" style="width:40px;float:right;padding:5px;"></p>
+		<p><input type="image" onclick = 'set_color();' src="images/color.png" style="width:40px;float:right;padding:5px;"></p>
+		<p><input type="image" onclick = 'if(balls[target].com!=null) {target = balls[target].com;show_elem("gray");} else get_comment();' src="images/com.png" style="width:40px;float:right;padding:5px;"></p>
+		<p><input type="image" onclick = 'vote_=false;location.href = "project.html"' src="images/home.png" style="width:40px;position: absolute;left: 0px;padding:5px;"></p>
+	</div>
+	<div id = "gray" onclick = 'show_elem("gray")'></div>
+		<div class = "form" id = "comment_0" style = 'display:none;'>
+			<p><textarea id="editor" name="text"></textarea></p>
+			<p id="editor1">
+			<label for = "upload"><img id ='img1' onclick = 'window.scrollTo(0,0);' src="images/foto.png" style = 'width:40px;float:left;'></label>
+			<input type="image" id ='img2' onclick = 'window.scrollTo(0,0);text = document.getElementsByTagName("textarea")[0].value;del_img(); ball_upd();'src="images/foto_del.png" style = 'width:40px;float:left;'>
+			<input type="image" onclick = 'text = document.getElementsByTagName("textarea")[0].value; show_elem("gray");  ball_upd();'src="images/ok.png" style = 'width:40px;'>
+			</p>
+			<div id = "load_img"></div>
+		</div>
+
+  </body>
+ <script src="js/canvas.js"></script>
+ <script>
+ var del_b = 0;
+var editor = document.getElementById('editor'),
+      dummy = document.getElementById('dummy'),
+	  editor1 = document.getElementById('editor1');
+editor.addEventListener('keyup',get_width_com,false);
+ function get_width_com(){
+   dummy.innerText = editor.value.replace(/\n.{1}/g,'\na');
+   dummy.style.width = editor.offsetWidth-14+'px';
+   editor.style.height = dummy.offsetHeight-8+'px';
+   editor1.style['padding-top'] = dummy.offsetHeight-22+'px';
+ }
+ document.getElementById('del_b').addEventListener('mousedown', function(event) {
+		 	if(!sensor){
+				del_b = 1;
+				setTimeout(function(){if(del_b){del_b = 0; document.getElementById('del_b2').style.display = 'inline';}},1000);
+				}
+});
+ document.addEventListener('mousedown', function(event) {
+		 	if(!sensor){
+				if(event.target.id !='del_b2')document.getElementById('del_b2').style.display = 'none';
+				}
+});
+document.getElementById('del_b').addEventListener('mouseup', function(event) {
+		 	if(!sensor){
+				if(del_b)del_ball(target);
+				del_b = 0;
+				}
+});
+ document.getElementById('del_b').addEventListener('touchstart', function(event) {
+				del_b = 1;
+				setTimeout(function(){if(del_b){del_b = 0; document.getElementById('del_b2').style.display = 'inline';}},1000);
+});
+ document.addEventListener('touchstart', function(event) {
+				if(event.target.id !='del_b2')document.getElementById('del_b2').style.display = 'none';
+});
+document.getElementById('del_b').addEventListener('touchend', function(event) {
+				if(del_b)del_ball(target);
+				del_b = 0;
+});
+//onclick = 'del_ball(target);'
+</script>
+</html>

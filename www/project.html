@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="viewport" 
+	content="width=device-width, initial-scale=1.0, user-scalable=no">
+	<meta name="mobile-web-app-capable" content="yes">
+	<meta charset="utf-8" />
+	<!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<title></title>
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+	<link rel="stylesheet" href="css/style.css" type="text/css" media="screen, projection" >
+	<!--[if lte IE 6]><link rel="stylesheet" href="style_ie.css" type="text/css" media="screen, projection" /><![endif]-->
+	</head>
+  <body style = "left: 50%;width: 400px;margin-left: -200px;">
+	<div id = 'loading'> <div class = 'loading1'></div></div>
+	<div id = "money" style = 'position:static;'> кукусики </div>
+	<div id = "pr_head">
+		<div   style = "width:50%;float:left;height: 40px;"><div id = 'k_0' class = 'pr_head_d' style = 'background: #2fabab'>мои</div></div>
+		<div   style = "width:50%;float:left;height: 40px;"><div id = 'k_1' class = 'pr_head_d' style = 'background: #808080;margin: 10px 10px 10px 5px;'>чужие</div></div>
+	</div>
+	<div id = "pr_body" >
+		<div class = "project_d0" style="display:none;">
+			<div class = "project_d1">
+				Название проекта
+			</div>
+			<div class = "project_d2">
+				URL
+			</div>
+
+		</div>	
+	</div>
+	<div id = "head" style = 'position:static;float:left;'>
+		<p><input type="image" onclick = 'new_pro();' src="images/new.png" style="width:40px;float:right;padding:5px;"></p>
+		<p><input type="image" onclick = 'del_pro();' src="images/del.png" style="width:40px;float:right;padding:5px;"></p>
+		<p><input type="image" onclick = 'rename_pro();' src="images/rename.png" style="width:40px;float:right;padding:5px;"></p>
+		<p><input type="image" onclick = 'url_pro();' src="images/url.png" style="width:40px;float:right;padding:5px;"></p>
+	</div>
+	
+  </body>
+  <script src="js/pro.js"></script>
+</html>

@@ -1,0 +1,133 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="viewport" 
+	<meta name="mobile-web-app-capable" content="yes">
+	<meta charset="utf-8" />
+	<!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<title></title>
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+	<!--[if lte IE 6]><link rel="stylesheet" href="style_ie.css" type="text/css" media="screen, projection" /><![endif]-->
+	</head>
+  <body >
+<iframe id='fra' src='zaza.php?sva=me' height = '0' width = '0' align='left' onload = 'piu();'>  ВУАХАХАХА!!! </iframe>
+<div id = 'was1' style = 'width:40%;float:left;'></div>
+<div id = 'was2' style = 'width:40%;float:right;'></div>
+
+<script>
+function getXmlHttp(){
+  var xmlhttp;
+  try {
+    xmlhttp = new ActiveXObject("Msxml2.XMLHTTP");
+  } catch (e) {
+    try {
+      xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    } catch (E) {
+      xmlhttp = false;
+    }
+  }
+  if (!xmlhttp && typeof XMLHttpRequest!='undefined') {
+    xmlhttp = new XMLHttpRequest();
+  }
+  return xmlhttp;
+}
+// javascript-код голосования из примера
+function vote(was1,was2) {
+	// (1) создать объект для запроса к серверу
+	var req = getXmlHttp(); 
+    var get_send = '';
+	req.onreadystatechange = function() {  
+        // onreadystatechange активируется при получении ответа сервера
+
+		if (req.readyState == 4) { 
+            // если запрос закончил выполняться
+
+			if(req.status == 200) { 
+              setTimeout(function(){if(ir<word_ma.length) next();},500);
+			}
+			// тут можно добавить else с обработкой ошибок запроса
+		}
+
+	}
+
+       // (3) задать адрес подключения
+	//req.open('GET', 'http://192.168.1.34/balls.php?balls='+encodeURIComponent(to_send)+'&map=1&dt='+dt, false);  
+	req.open('POST','zaza_put.php', true);  
+	req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+	
+	// объект запроса подготовлен: указан адрес и создана функция onreadystatechange
+	// для обработки ответа сервера
+	 
+        // (4)
+	req.send('was1='+was1+'&was2='+was2);  // отослать запрос
+	//console.log('balls='+to_send+'&map=1&dt='+dt);
+        // (5)
+		
+}
+
+var ir = 0;
+function next(){
+	document.getElementById('fra').src = 'zaza.php?sva='+word_ma[ir];
+}
+function piu(){
+	var was1 = '';
+	var was2 = '';
+	
+	try{
+		 was1 = document.getElementById('fra').contentDocument.getElementById('was1').innerText+'\n';
+		 was2 = document.getElementById('fra').contentDocument.getElementById('was2').innerText+'\n'; 		
+	}
+	catch(e){};
+	ir++;
+	vote(was1,was2)
+}
+var word_ma = [
+'warn',
+'waste',
+'weird',
+'apply',
+'bastard',
+'harm',
+'helpless',
+'matt',
+'popular',
+'release',
+'rope',
+'seize',
+'thou',
+'amuse',
+'bat',
+'central',
+'continuing',
+'curve',
+'hook',
+'imperial',
+'leaped',
+'picking',
+'rid',
+'sport',
+'style',
+'unknown',
+'wander',
+'wooden',
+'cellar',
+'exist',
+'glimpse',
+'halt',
+'height',
+'lonely',
+'losing',
+'mighty',
+'painful',
+'steel',
+'ugly',
+'version',
+'whenever',
+'affect',
+'bye',
+'confidence',
+'drawer',
+'eventually'];
+</script>
+</html>
